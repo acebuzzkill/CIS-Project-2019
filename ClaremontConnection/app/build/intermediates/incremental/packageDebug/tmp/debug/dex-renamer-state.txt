@@ -1,4 +1,4 @@
-#Mon Sep 23 13:29:28 PDT 2019
-base.0=C\:\\Users\\Hotsu\\AndroidStudioProjects\\ClaremontConnection\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+#Tue Sep 24 14:42:08 PDT 2019
+base.0=C\:\\Users\\Hotsu\\Documents\\GitHub\\CIS-Project-2019\\ClaremontConnection\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
