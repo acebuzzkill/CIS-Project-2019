@@ -6,10 +6,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
 
 public abstract class BaseActivityToolbar extends AppCompatActivity {
 
@@ -43,7 +41,7 @@ public abstract class BaseActivityToolbar extends AppCompatActivity {
                     this.startActivity(intent1);
                     break;
                 case R.id.menu_item2:
-                    Intent intent2 = new Intent(this, Profile.class);
+                    Intent intent2 = new Intent(this, ProfileLogin.class);
                     this.startActivity(intent2);
                     break;
                 case R.id.menu_item3:

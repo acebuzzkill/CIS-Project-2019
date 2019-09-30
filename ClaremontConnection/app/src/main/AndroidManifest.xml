@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ProfileLogin"></activity>
+        <activity android:name=".ProfileCreate" />
         <activity android:name=".Options" />
         <activity android:name=".Messages" />
         <activity android:name=".Map" />
