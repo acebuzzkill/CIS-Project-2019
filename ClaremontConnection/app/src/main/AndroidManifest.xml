@@ -18,6 +18,7 @@
         <activity android:name=".FindAlumni" />
         <activity android:name=".Profile" />
         <activity android:name=".NewsFeed" />
+        <activity android:name=".TestDisplayDBUser" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
