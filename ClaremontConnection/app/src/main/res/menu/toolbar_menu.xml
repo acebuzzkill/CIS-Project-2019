@@ -35,4 +35,8 @@
         android:title="item8"
         app:showAsAction="ifRoom" />
 
+    <item android:id="@+id/menu_item9"
+        android:title="Test DB"
+        app:showAsAction="never" />
+
 </menu>
