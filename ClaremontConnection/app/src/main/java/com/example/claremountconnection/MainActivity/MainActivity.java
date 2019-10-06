@@ -1,4 +1,4 @@
-package com.example.claremountconnection;
+package com.example.claremountconnection.MainActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import com.example.claremountconnection.BaseActivityToolbar;
+import com.example.claremountconnection.R;
 
 public class MainActivity extends BaseActivityToolbar {
 

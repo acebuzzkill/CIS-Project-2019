@@ -4,15 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Messages extends BaseActivityToolbar {
+public class ProfileEdit extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public int getLayoutResource() {
-        return R.layout.activity_messages;
+        setContentView(R.layout.activity_profile_edit);
     }
 }

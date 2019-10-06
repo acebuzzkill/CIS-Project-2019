@@ -1,14 +1,19 @@
-package com.example.claremountconnection;
+package com.example.claremountconnection.ProfileLoginCreate;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.claremountconnection.ProfileHome.Profile;
+import com.example.claremountconnection.R;
 
 public class ProfileLogin extends AppCompatActivity {
 
@@ -45,13 +50,23 @@ public class ProfileLogin extends AppCompatActivity {
     }
 
     public void openUserProfile() {
-        Intent intent = new Intent(this, Profile.class);
-        startActivity(intent);
+        Intent intentOpen = new Intent(this, Profile.class);
+        startActivity(intentOpen);
+        closeKeyboard();
     }
 
     public void openProfileCreate() {
         Intent intent = new Intent(this, ProfileCreate.class);
         startActivity(intent);
+        closeKeyboard();
+    }
+
+    private void closeKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     private TextWatcher loginTextWatcher = new TextWatcher() {

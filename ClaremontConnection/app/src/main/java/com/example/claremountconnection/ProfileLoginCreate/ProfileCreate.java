@@ -1,17 +1,24 @@
-package com.example.claremountconnection;
+package com.example.claremountconnection.ProfileLoginCreate;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.claremountconnection.R;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.regex.Pattern;
 
 public class ProfileCreate extends AppCompatActivity {
+
+    private TextInputLayout textInputLoginEmail;
+    private TextInputLayout textInputLoginPassword;
+    private Button buttonNewProfile;
+
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
                     "(?=.*[0-9])" +         //at least 1 digit
@@ -22,9 +29,6 @@ public class ProfileCreate extends AppCompatActivity {
                     "(?=\\S+$)" +           //no white spaces
                     ".{4,}" +               //at least 4 characters
                     "$");
-
-    private TextInputLayout textInputLoginEmail;
-    private TextInputLayout textInputLoginPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

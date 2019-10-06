@@ -1,10 +1,13 @@
-package com.example.claremountconnection;
+package com.example.claremountconnection.Messages;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Opportunities extends BaseActivityToolbar {
+import com.example.claremountconnection.BaseActivityToolbar;
+import com.example.claremountconnection.R;
+
+public class Messages extends BaseActivityToolbar {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,6 +16,6 @@ public class Opportunities extends BaseActivityToolbar {
 
     @Override
     public int getLayoutResource() {
-        return R.layout.activity_opportunities;
+        return R.layout.activity_messages;
     }
 }

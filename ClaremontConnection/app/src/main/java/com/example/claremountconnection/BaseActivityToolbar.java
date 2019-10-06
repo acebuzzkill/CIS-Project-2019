@@ -9,6 +9,15 @@ import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.claremountconnection.FindAlumni.FindAlumni;
+import com.example.claremountconnection.MainActivity.MainActivity;
+import com.example.claremountconnection.Map.Map;
+import com.example.claremountconnection.Messages.Messages;
+import com.example.claremountconnection.NewsFeed.NewsFeed;
+import com.example.claremountconnection.Opportunities.Opportunities;
+import com.example.claremountconnection.Options.Options;
+import com.example.claremountconnection.ProfileLoginCreate.ProfileLogin;
+
 public abstract class BaseActivityToolbar extends AppCompatActivity {
 
         Toolbar toolbar;
