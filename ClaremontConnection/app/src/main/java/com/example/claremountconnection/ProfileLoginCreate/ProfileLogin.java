@@ -12,6 +12,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.claremountconnection.DatabaseHelper;
+import com.example.claremountconnection.DatabaseHelper2;
 import com.example.claremountconnection.ProfileHome.Profile;
 import com.example.claremountconnection.R;
 
@@ -21,22 +23,26 @@ public class ProfileLogin extends AppCompatActivity {
     private EditText textUserPassword;
     private Button buttonEnter;
     private Button buttonCreate;
+    DatabaseHelper2 db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_login);
 
+        db = new DatabaseHelper2(this);
+
         textUserEmail = findViewById(R.id.text_user_email);
         textUserPassword = findViewById(R.id.text_user_password);
         buttonEnter = findViewById(R.id.button_user_enter);
+        /**
         buttonEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openUserProfile();
             }
         });
-
+        */
         buttonCreate = findViewById(R.id.button_user_create);
         buttonCreate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +53,8 @@ public class ProfileLogin extends AppCompatActivity {
 
         textUserEmail.addTextChangedListener(loginTextWatcher);
         textUserPassword.addTextChangedListener(loginTextWatcher);
+
+
     }
 
     public void openUserProfile() {
