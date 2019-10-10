@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.claremountconnection.DatabaseHelper;
 import com.example.claremountconnection.DatabaseHelper2;
@@ -29,21 +30,26 @@ public class ProfileLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_login);
-
         db = new DatabaseHelper2(this);
 
-        textUserEmail = findViewById(R.id.text_user_email);
-        textUserPassword = findViewById(R.id.text_user_password);
-        buttonEnter = findViewById(R.id.button_user_enter);
-        /**
+        textUserEmail = (EditText) findViewById(R.id.text_user_email);
+        textUserPassword = (EditText) findViewById(R.id.text_user_password);
+        buttonEnter = (Button) findViewById(R.id.button_user_enter);
+
         buttonEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openUserProfile();
+                String email = textUserEmail.getText().toString();
+                String password = textUserPassword.getText().toString();
+                Boolean checkemailPassword = db.emailPassword(email,password);
+                if(checkemailPassword==true)
+                    Toast.makeText(getApplicationContext(), "You have logged in", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getApplicationContext(), "Wrong email or password", Toast.LENGTH_SHORT).show();
             }
         });
-        */
-        buttonCreate = findViewById(R.id.button_user_create);
+        
+        buttonCreate = (Button)findViewById(R.id.button_user_create);
         buttonCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,8 +59,6 @@ public class ProfileLogin extends AppCompatActivity {
 
         textUserEmail.addTextChangedListener(loginTextWatcher);
         textUserPassword.addTextChangedListener(loginTextWatcher);
-
-
     }
 
     public void openUserProfile() {
