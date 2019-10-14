@@ -61,6 +61,9 @@ public class ProfileCreate extends AppCompatActivity {
                 if (s1.equals("") || s2.equals("") || s3.equals("")) {
                     Toast.makeText(getApplicationContext(), "Fields are empty", Toast.LENGTH_SHORT).show();
                 }
+                if (!s2.equals(s3)) {
+                    textLoginConfirmPassword.setError("Email does not match");
+                }
                 if (!Patterns.EMAIL_ADDRESS.matcher(s1).matches()){
                     textLoginEmail.setError("Not a valid email address");
                 }
