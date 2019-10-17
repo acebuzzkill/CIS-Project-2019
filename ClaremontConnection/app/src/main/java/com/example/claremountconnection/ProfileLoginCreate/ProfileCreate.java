@@ -2,6 +2,7 @@ package com.example.claremountconnection.ProfileLoginCreate;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.claremountconnection.DatabaseHelper2;
+import com.example.claremountconnection.ProfileEdit;
 import com.example.claremountconnection.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -55,6 +57,12 @@ public class ProfileCreate extends AppCompatActivity {
         buttonNewProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                openEditProfile();
+            }
+        });
+            /**
+            @Override
+            public void onClick(View v) {
                 String s1 = textLoginEmail.getText().toString();
                 String s2 = textLoginPassword.getText().toString();
                 String s3 = textLoginConfirmPassword.getText().toString();
@@ -86,8 +94,14 @@ public class ProfileCreate extends AppCompatActivity {
                 }
             }
         });
-
+        */
     }
+
+    public void openEditProfile() {
+        Intent intent = new Intent(this, ProfileEdit.class);
+        startActivity(intent);
+    }
+}
     /**
     private boolean validateEmail() {
         String emailInput = textInputLoginEmail.getEditText().getText().toString().trim();
@@ -119,6 +133,6 @@ public class ProfileCreate extends AppCompatActivity {
         }
     }
     */
-}
+
 
 
