@@ -9,14 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfileLogin"></activity>
+        <activity android:name=".ProfileLogin" />
         <activity android:name=".ProfileCreate" />
         <activity android:name=".Options" />
         <activity android:name=".Messages" />
         <activity android:name=".Map" />
         <activity android:name=".Opportunities" />
         <activity android:name=".FindAlumni" />
-        <activity android:name=".Profile" />
+        <activity android:name=".ProfileHome.Profile" />
         <activity android:name=".NewsFeed" />
         <activity android:name=".TestDisplayDBUser" />
         <activity android:name=".MainActivity">

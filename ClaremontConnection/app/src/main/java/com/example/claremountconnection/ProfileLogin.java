@@ -2,13 +2,20 @@ package com.example.claremountconnection;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.claremountconnection.DatabaseHelper;
+import com.example.claremountconnection.ProfileHome.Profile;
+import com.example.claremountconnection.R;
 
 public class ProfileLogin extends AppCompatActivity {
 
@@ -16,23 +23,34 @@ public class ProfileLogin extends AppCompatActivity {
     private EditText textUserPassword;
     private Button buttonEnter;
     private Button buttonCreate;
+    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_login);
+        db = new DatabaseHelper(this);
 
-        textUserEmail = findViewById(R.id.text_user_email);
-        textUserPassword = findViewById(R.id.text_user_password);
-        buttonEnter = findViewById(R.id.button_user_enter);
+        textUserEmail = (EditText) findViewById(R.id.text_user_email);
+        textUserPassword = (EditText) findViewById(R.id.text_user_password);
+        buttonEnter = (Button) findViewById(R.id.button_user_enter);
+
         buttonEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openUserProfile();
+                String email = textUserEmail.getText().toString();
+                String password = textUserPassword.getText().toString();
+                Boolean checkemailPassword = db.emailPassword(email,password);
+                if(checkemailPassword==true) {
+                    Toast.makeText(getApplicationContext(), "You have logged in", Toast.LENGTH_SHORT).show();
+                    openUserProfile();
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "Wrong email or password", Toast.LENGTH_SHORT).show();
             }
         });
-
-        buttonCreate = findViewById(R.id.button_user_create);
+        
+        buttonCreate = (Button)findViewById(R.id.button_user_create);
         buttonCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,13 +63,23 @@ public class ProfileLogin extends AppCompatActivity {
     }
 
     public void openUserProfile() {
-        Intent intent = new Intent(this, Profile.class);
-        startActivity(intent);
+        Intent intentOpen = new Intent(this, Profile.class);
+        startActivity(intentOpen);
+        closeKeyboard();
     }
 
     public void openProfileCreate() {
         Intent intent = new Intent(this, ProfileCreate.class);
         startActivity(intent);
+        closeKeyboard();
+    }
+
+    private void closeKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     private TextWatcher loginTextWatcher = new TextWatcher() {

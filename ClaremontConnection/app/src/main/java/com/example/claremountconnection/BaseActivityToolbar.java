@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.claremountconnection.ProfileLogin;
+
 public abstract class BaseActivityToolbar extends AppCompatActivity {
 
         Toolbar toolbar;

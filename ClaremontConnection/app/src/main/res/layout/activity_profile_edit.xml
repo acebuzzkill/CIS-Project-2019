@@ -1,0 +1,336 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_picture"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
+                app:civ_border_color="@color/Black"
+                app:civ_border_width="2dp"
+                android:src="@drawable/ic_person_black_24dp"
+                android:padding="10dp"
+                android:layout_margin="5dp"/>
+
+            <LinearLayout
+                android:id="@+id/profile_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_picture"
+                android:layout_margin="10dp"
+                android:background="@color/WhiteSmoke"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/LightSteelBlue"
+                    android:padding="5dp"
+                    android:text="Name"
+                    android:textColor="@color/Black"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:hint="Title"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/first"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:hint="First"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/middle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:hint="Middle"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/last"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:hint="Last"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profile_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_name"
+                android:layout_margin="10dp"
+                android:background="@color/WhiteSmoke"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/LightSteelBlue"
+                    android:padding="5dp"
+                    android:text="Contact"
+                    android:textColor="@color/Black"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:hint="Email"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:hint="Phone"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profile_employment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_contact"
+                android:layout_margin="10dp"
+                android:background="@color/WhiteSmoke"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/current_employment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/LightSteelBlue"
+                    android:padding="5dp"
+                    android:text="Current Employment"
+                    android:textColor="@color/Black"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/job_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:hint="Job Title"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/employer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:hint="Employer"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profile_affiliations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_employment"
+                android:layout_margin="10dp"
+                android:background="@color/WhiteSmoke"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/affiliations"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/LightSteelBlue"
+                    android:padding="5dp"
+                    android:text="Professional Affiliations"
+                    android:textColor="@color/Black"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/organizations"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:hint="Organizations"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profile_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_affiliations"
+                android:layout_margin="10dp"
+                android:background="@color/WhiteSmoke"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/LightSteelBlue"
+                    android:padding="5dp"
+                    android:text="Location"
+                    android:textColor="@color/Black"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:hint="State"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/zip_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:hint="Zip Code"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profile_publications"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_location"
+                android:layout_margin="10dp"
+                android:background="@color/WhiteSmoke"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/academic_publications"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/LightSteelBlue"
+                    android:padding="5dp"
+                    android:text="Academic Publications"
+                    android:textColor="@color/Black"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/publications"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/WhiteSmoke"
+                    android:padding="5dp"
+                    android:hint="Publications"
+                    android:textColor="@color/Black"
+                    android:textSize="25sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profile_education"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_publications"
+                android:layout_margin="10dp"
+                android:background="@color/WhiteSmoke"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/education"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/LightSteelBlue"
+                    android:padding="5dp"
+                    android:text="Education"
+                    android:textColor="@color/Black"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/major"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:hint="Major(s) and Concentration(s)"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/minor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/WhiteSmoke"
+                    android:padding="10dp"
+                    android:hint="Minor(s)"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/area_of_study"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:hint="Area of Study"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/research_interests"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:hint="Research Interests"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/skills"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:hint="Skills"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</merge>

@@ -22,7 +22,7 @@ public class TestDisplayDBUser extends BaseActivityToolbar {
         nameList = dbHelper.getAllUsers();
         user = nameList.get(0);
         textViewName.setText("success: \n" +
-                user.getName());
+                user.getFirstName());
         }
 
     @Override
