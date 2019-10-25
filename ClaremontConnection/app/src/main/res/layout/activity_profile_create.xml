@@ -59,8 +59,12 @@
         android:id="@+id/profile_create_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< Updated upstream
         android:text="Create Profile"
         android:onClick="confirmInput"
+=======
+        android:text="Create Account"
+>>>>>>> Stashed changes
         />
 
 </LinearLayout>
