@@ -66,7 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "myEmail@email.com", "Pw1!", "myPhone", "myJob",
                 "myEmployer", "myOrg", "myState", "myZip",
                 "myMajor", "myMinor", "myStudies",
-                "myResearchInterests", "mySkills");
+                "myResearchInterests", "mySkillset");
         addUser(user1);
     }
 
