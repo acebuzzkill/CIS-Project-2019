@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.claremountconnection.DatabaseHelper;
-import com.example.claremountconnection.DatabaseHelper2;
 import com.example.claremountconnection.ProfileHome.Profile;
 import com.example.claremountconnection.R;
 
@@ -24,13 +23,13 @@ public class ProfileLogin extends AppCompatActivity {
     private EditText textUserPassword;
     private Button buttonEnter;
     private Button buttonCreate;
-    DatabaseHelper2 db;
+    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_login);
-        db = new DatabaseHelper2(this);
+        db = new DatabaseHelper(this);
 
         textUserEmail = (EditText) findViewById(R.id.text_user_email);
         textUserPassword = (EditText) findViewById(R.id.text_user_password);
@@ -42,8 +41,10 @@ public class ProfileLogin extends AppCompatActivity {
                 String email = textUserEmail.getText().toString();
                 String password = textUserPassword.getText().toString();
                 Boolean checkemailPassword = db.emailPassword(email,password);
-                if(checkemailPassword==true)
+                if(checkemailPassword==true) {
                     Toast.makeText(getApplicationContext(), "You have logged in", Toast.LENGTH_SHORT).show();
+                    openUserProfile();
+                }
                 else
                     Toast.makeText(getApplicationContext(), "Wrong email or password", Toast.LENGTH_SHORT).show();
             }

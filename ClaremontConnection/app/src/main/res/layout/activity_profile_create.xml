@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:layout_gravity="center_horizontal"
-    tools:context=".ProfileLoginCreate.ProfileCreate">
+    tools:context=".ProfileCreate">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_login_email"
@@ -39,32 +39,12 @@
             android:imeOptions="actionSend" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_login_confirm_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:errorEnabled="true"
-        app:passwordToggleEnabled="true">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/text_login_confirm_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Confirm Password"
-            android:inputType="textPassword"
-            android:imeOptions="actionSend" />
-    </com.google.android.material.textfield.TextInputLayout>
-
     <Button
         android:id="@+id/profile_create_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< Updated upstream
-        android:text="Create Profile"
-        android:onClick="confirmInput"
-=======
         android:text="Create Account"
->>>>>>> Stashed changes
+        android:onClick="confirmInput"
         />
 
 </LinearLayout>
