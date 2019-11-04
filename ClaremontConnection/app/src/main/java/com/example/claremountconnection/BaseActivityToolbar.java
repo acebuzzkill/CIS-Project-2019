@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -28,6 +29,9 @@ public abstract class BaseActivityToolbar extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(getLayoutResource());
             configureToolbar();
+
+            TextView theTextView = (TextView) findViewById(R.id.textView2);
+            theTextView.setText("We are pleased to welcome you to the CGU Connection app for alumni!");
         }
 
         private void configureToolbar() {

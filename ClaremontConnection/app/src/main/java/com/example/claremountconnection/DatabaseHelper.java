@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.claremountconnection.ProfileContract.UsersTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +15,25 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "ClaremontConnection.db";
     private static final int DATABASE_VERSION = 1;
+    private static final String tableName = "users";
+    private static final String ID = "ID";
+    private static final String keyFirstName = "firstName";
+    private static final String keyMiddleName = "middleName";
+    private static final String keyLastName = "lastname";
+    private static final String keytitle = "title";
+    private static final String keyEmail = "email";
+    private static final String keyPassword = "password";
+    private static final String keyPhone = "phone";
+    private static final String keyJobTite = "jobTitle";
+    private static final String keyEmployer = "employer";
+    private static final String keyOrganizations = "organizations";
+    private static final String keyState= "state";
+    private static final String keyZip= "zip";
+    private static final String keyMajor = "major";
+    private static final String keyMinor = "minor";
+    private static final String keyAreaOfStudy = "areaOfStudy";
+    private static final String keyResearchInterests = "researchInterests";
+    private static final String keySkills = "skills";
 
     private SQLiteDatabase db;
 
@@ -25,99 +43,99 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        this.db = db;
+
 
         final String SQL_CREATE_USERS_TABLE = "CREATE TABLE " +
-                UsersTable.TABLE_NAME + " ( " +
-                UsersTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                UsersTable.COLUMN_TITLE + " TEXT, " +
-                UsersTable.COLUMN_FIRSTNAME + " TEXT, " +
-                UsersTable.COLUMN_MIDDLENAME + " TEXT, " +
-                UsersTable.COLUMN_LASTNAME + " TEXT, " +
-                UsersTable.COLUMN_EMAIL + " TEXT, " +
-                UsersTable.COLUMN_PASSWORD + " TEXT, " +
-                UsersTable.COLUMN_PHONE + " TEXT, " +
-                UsersTable.COLUMN_JOBTITLE + " TEXT, " +
-                UsersTable.COLUMN_EMPLOYER + " TEXT, " +
-                UsersTable.COLUMN_ORGANIZATIONS + " TEXT, " +
-                UsersTable.COLUMN_STATE + " TEXT, " +
-                UsersTable.COLUMN_ZIP + " TEXT, " +
-                UsersTable.COLUMN_MAJOR + " TEXT, " +
-                UsersTable.COLUMN_MINOR + " TEXT, " +
-                UsersTable.COLUMN_AREAOFSTUDY + " TEXT, " +
-                UsersTable.COLUMN_RESEARCHINTERESTS + " TEXT, " +
-                UsersTable.COLUMN_SKILLS + " TEXT" +
+                tableName + " ( " +
+                ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                keytitle + " TEXT, " +
+                keyFirstName + " TEXT, " +
+                keyMiddleName + " TEXT, " +
+                keyLastName + " TEXT, " +
+                keyEmail + " TEXT, " +
+                keyPassword + " TEXT, " +
+                keyPhone + " TEXT, " +
+                keyJobTite + " TEXT, " +
+                keyEmployer + " TEXT, " +
+                keyOrganizations + " TEXT, " +
+                keyState + " TEXT, " +
+                keyZip + " TEXT, " +
+                keyMajor + " TEXT, " +
+                keyMinor + " TEXT, " +
+                keyAreaOfStudy + " TEXT, " +
+                keyResearchInterests + " TEXT, " +
+                keySkills + " TEXT" +
                 ")";
         db.execSQL(SQL_CREATE_USERS_TABLE);
-        fillUsersTable();
 //        Intent intent = new Intent(DatabaseHelper.this, TestDisplayDBUser.class);
 //        startActivity();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + UsersTable.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + tableName);
         onCreate(db);
     }
 
 
-    private void fillUsersTable() {
-        Users user1 = new Users ("Mr/Mrs", "firstName", "middleName", "lastName",
-                "myEmail@email.com", "Pw1!", "myPhone", "myJob",
-                "myEmployer", "myOrg", "myState", "myZip",
-                "myMajor", "myMinor", "myStudies",
-                "myResearchInterests", "mySkills");
-        addUser(user1);
-    }
+   // private void fillUsersTable() {
+   //     Users user1 = new Users ("Mr/Mrs", "firstName", "middleName", "lastName",
+   //             "myEmail@email.com", "Pw1!", "myPhone", "myJob",
+   //             "myEmployer", "myOrg", "myState", "myZip",
+   //             "myMajor", "myMinor", "myStudies",
+   //             "myResearchInterests", "mySkills");
+   //     addUser(user1);
+   // }
 
-    private void addUser(Users user) {
+    private void addUser(String title, String firstName, String lastName, String middleName, String email, String password, String phone, String jobTitle, String employer, String organization, String state,
+    String zip, String major, String minor, String areaOfStudy, String researchInterests) {
+        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(UsersTable.COLUMN_TITLE, user.getTitle());
-        cv.put(UsersTable.COLUMN_FIRSTNAME, user.getFirstName());
-        cv.put(UsersTable.COLUMN_LASTNAME, user.getLastName());
-        cv.put(UsersTable.COLUMN_MIDDLENAME, user.getMiddleName());
-        cv.put(UsersTable.COLUMN_EMAIL, user.getEmail());
-        cv.put(UsersTable.COLUMN_PASSWORD, user.getPassword());
-        cv.put(UsersTable.COLUMN_PHONE, user.getPhone());
-        cv.put(UsersTable.COLUMN_JOBTITLE, user.getJobTitle());
-        cv.put(UsersTable.COLUMN_EMPLOYER, user.getEmployer());
-        cv.put(UsersTable.COLUMN_ORGANIZATIONS, user.getOrganization());
-        cv.put(UsersTable.COLUMN_STATE, user.getState());
-        cv.put(UsersTable.COLUMN_ZIP, user.getZip());
-        cv.put(UsersTable.COLUMN_MAJOR, user.getMajor());
-        cv.put(UsersTable.COLUMN_MINOR, user.getMinor());
-        cv.put(UsersTable.COLUMN_AREAOFSTUDY, user.getAreaOfStudy());
-        cv.put(UsersTable.COLUMN_RESEARCHINTERESTS, user.getResearchInterests());
-        cv.put(UsersTable.COLUMN_SKILLS, user.getSkills());
-        db.insert(UsersTable.TABLE_NAME, null, cv);
+        cv.put(keytitle, title);
+        cv.put(keyFirstName, firstName);
+        cv.put(keyLastName, lastName);
+        cv.put(keyMiddleName, middleName);
+        cv.put(keyEmail, email);
+        cv.put(keyPassword, password);
+        cv.put(keyPhone, phone);
+        cv.put(keyJobTite, jobTitle);
+        cv.put(keyEmployer, employer);
+        cv.put(keyOrganizations, organization);
+        cv.put(keyState, state);
+        cv.put(keyZip,zip);
+        cv.put(keyMajor, major);
+        cv.put(keyMinor, minor);
+        cv.put(keyAreaOfStudy, areaOfStudy);
+        cv.put(keyResearchInterests, researchInterests);
+        cv.put(keySkills, keySkills);
+        db.insert(tableName, null, cv);
     }
 
     public List<Users> getAllUsers() {
         List<Users> usersList = new ArrayList<>();
         db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + UsersTable.TABLE_NAME, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + tableName, null);
 
         if (cursor.moveToFirst()) {
             do {
                 Users user = new Users();
-                user.setTitle(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_TITLE)));
-                user.setFirstName(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_FIRSTNAME)));
-                user.setLastName(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_LASTNAME)));
-                user.setMiddleName(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_MIDDLENAME)));
-                user.setEmail(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_EMAIL)));
-                user.setPassword(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_PASSWORD)));
-                user.setPhone(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_PHONE)));
-                user.setJobTitle(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_JOBTITLE)));
-                user.setEmployer(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_EMPLOYER)));
-                user.setOrganization(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_ORGANIZATIONS)));
-                user.setState(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_STATE)));
-                user.setZip(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_ZIP)));
-                user.setMajor(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_MAJOR)));
-                user.setMinor(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_MINOR)));
-                user.setAreaOfStudy(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_AREAOFSTUDY)));
-                user.setResearchInterests(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_RESEARCHINTERESTS)));
-                user.setSkills(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_SKILLS)));
-                usersList.add(user);
+                user.setTitle(cursor.getString(cursor.getColumnIndex(keytitle)));
+                user.setFirstName(cursor.getString(cursor.getColumnIndex(keyFirstName)));
+                user.setLastName(cursor.getString(cursor.getColumnIndex(keyLastName)));
+                user.setMiddleName(cursor.getString(cursor.getColumnIndex(keyMiddleName)));
+                user.setEmail(cursor.getString(cursor.getColumnIndex(keyEmail)));
+                user.setPassword(cursor.getString(cursor.getColumnIndex(keyPassword)));
+                user.setPhone(cursor.getString(cursor.getColumnIndex(keyPhone)));
+                user.setJobTitle(cursor.getString(cursor.getColumnIndex(keytitle)));
+                user.setEmployer(cursor.getString(cursor.getColumnIndex(keyEmployer)));
+                user.setOrganization(cursor.getString(cursor.getColumnIndex(keyOrganizations)));
+                user.setState(cursor.getString(cursor.getColumnIndex(keyState)));
+                user.setZip(cursor.getString(cursor.getColumnIndex(keyZip)));
+                user.setMajor(cursor.getString(cursor.getColumnIndex(keyMajor)));
+                user.setMinor(cursor.getString(cursor.getColumnIndex(keyMinor)));
+                user.setAreaOfStudy(cursor.getString(cursor.getColumnIndex(keyAreaOfStudy)));
+                user.setResearchInterests(cursor.getString(cursor.getColumnIndex(keyResearchInterests)));
+                user.setSkills(cursor.getString(cursor.getColumnIndex(keySkills)));
             } while (cursor.moveToNext());
         }
 
@@ -128,7 +146,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //check for email and password
     public Boolean emailPassword(String email, String password){
         db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from " + UsersTable.TABLE_NAME + " where " + UsersTable.COLUMN_EMAIL + " = ? and " + UsersTable.COLUMN_PASSWORD + " = ?", new String[]{email,password});
+        Cursor cursor = db.rawQuery("select * from " + tableName + " where " + keyEmail + " = ? and " + keyPassword + " = ?", new String[]{email,password});
         if(cursor.getCount()>0) {
             return true;
         }
