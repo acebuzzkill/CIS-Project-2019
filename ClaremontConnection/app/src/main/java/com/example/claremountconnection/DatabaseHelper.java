@@ -8,10 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "ClaremontConnection.db";
     private static final int DATABASE_VERSION = 1;
@@ -78,17 +74,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-   // private void fillUsersTable() {
-   //     Users user1 = new Users ("Mr/Mrs", "firstName", "middleName", "lastName",
-   //             "myEmail@email.com", "Pw1!", "myPhone", "myJob",
-   //             "myEmployer", "myOrg", "myState", "myZip",
-   //             "myMajor", "myMinor", "myStudies",
-   //             "myResearchInterests", "mySkills");
-   //     addUser(user1);
-   // }
 
-    private void addUser(String title, String firstName, String lastName, String middleName, String email, String password, String phone, String jobTitle, String employer, String organization, String state,
-    String zip, String major, String minor, String areaOfStudy, String researchInterests) {
+
+    private void addUser(String title, String firstName, String lastName, String middleName
+            , String email, String password, String phone, String jobTitle, String employer
+            , String organization, String state, String zip, String major, String minor
+            , String areaOfStudy, String researchInterests, String skills) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(keytitle, title);
@@ -108,40 +99,52 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(keyAreaOfStudy, areaOfStudy);
         cv.put(keyResearchInterests, researchInterests);
         cv.put(keySkills, keySkills);
+        cv.put(keySkills,skills);
         db.insert(tableName, null, cv);
     }
 
-    public List<Users> getAllUsers() {
-        List<Users> usersList = new ArrayList<>();
-        db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + tableName, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                Users user = new Users();
-                user.setTitle(cursor.getString(cursor.getColumnIndex(keytitle)));
-                user.setFirstName(cursor.getString(cursor.getColumnIndex(keyFirstName)));
-                user.setLastName(cursor.getString(cursor.getColumnIndex(keyLastName)));
-                user.setMiddleName(cursor.getString(cursor.getColumnIndex(keyMiddleName)));
-                user.setEmail(cursor.getString(cursor.getColumnIndex(keyEmail)));
-                user.setPassword(cursor.getString(cursor.getColumnIndex(keyPassword)));
-                user.setPhone(cursor.getString(cursor.getColumnIndex(keyPhone)));
-                user.setJobTitle(cursor.getString(cursor.getColumnIndex(keytitle)));
-                user.setEmployer(cursor.getString(cursor.getColumnIndex(keyEmployer)));
-                user.setOrganization(cursor.getString(cursor.getColumnIndex(keyOrganizations)));
-                user.setState(cursor.getString(cursor.getColumnIndex(keyState)));
-                user.setZip(cursor.getString(cursor.getColumnIndex(keyZip)));
-                user.setMajor(cursor.getString(cursor.getColumnIndex(keyMajor)));
-                user.setMinor(cursor.getString(cursor.getColumnIndex(keyMinor)));
-                user.setAreaOfStudy(cursor.getString(cursor.getColumnIndex(keyAreaOfStudy)));
-                user.setResearchInterests(cursor.getString(cursor.getColumnIndex(keyResearchInterests)));
-                user.setSkills(cursor.getString(cursor.getColumnIndex(keySkills)));
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        return usersList;
+    private void fillUsersTable() {
+        addUser("Mr/Mrs", "firstName", "lastName", "middleName",
+                "myEmail@email.com", "Pw1!", "myPhone", "myJob",
+                "myEmployer", "myOrg", "myState", "myZip",
+                "myMajor", "myMinor", "myStudies",
+                "myResearchInterests", "mySkills");
     }
+
+  //  public List<Users> getAllUsers() {
+ //       List<Users> usersList = new ArrayList<>();
+ //       db = getReadableDatabase();
+  //      Cursor cursor = db.rawQuery("SELECT * FROM " + tableName, null);
+//
+  //      if (cursor.moveToFirst()) {
+    //        do {
+    //            Users user = new Users();
+    //            user.setTitle(cursor.getString(cursor.getColumnIndex(keytitle)));
+     //           user.setFirstName(cursor.getString(cursor.getColumnIndex(keyFirstName)));
+     //           user.setLastName(cursor.getString(cursor.getColumnIndex(keyLastName)));
+     //           user.setMiddleName(cursor.getString(cursor.getColumnIndex(keyMiddleName)));
+     //           user.setEmail(cursor.getString(cursor.getColumnIndex(keyEmail)));
+      //          user.setPassword(cursor.getString(cursor.getColumnIndex(keyPassword)));
+      //          user.setPhone(cursor.getString(cursor.getColumnIndex(keyPhone)));
+     //           user.setJobTitle(cursor.getString(cursor.getColumnIndex(keytitle)));
+     //           user.setEmployer(cursor.getString(cursor.getColumnIndex(keyEmployer)));
+     //           user.setOrganization(cursor.getString(cursor.getColumnIndex(keyOrganizations)));
+     //           user.setState(cursor.getString(cursor.getColumnIndex(keyState)));
+     //           user.setZip(cursor.getString(cursor.getColumnIndex(keyZip)));
+     //           user.setMajor(cursor.getString(cursor.getColumnIndex(keyMajor)));
+     //           user.setMinor(cursor.getString(cursor.getColumnIndex(keyMinor)));
+     //           user.setAreaOfStudy(cursor.getString(cursor.getColumnIndex(keyAreaOfStudy)));
+     //           user.setResearchInterests(cursor.getString(cursor.getColumnIndex(keyResearchInterests)));
+     //           user.setSkills(cursor.getString(cursor.getColumnIndex(keySkills)));
+     //       } while (cursor.moveToNext());
+     //   }
+//
+  //      cursor.close();
+  //      return usersList;
+  //  }
+
+    //Get user
+    public
 
     //check for email and password
     public Boolean emailPassword(String email, String password){
@@ -157,7 +160,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //insert new user email and password into database
     public boolean insert(String email,String password){
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("Email",email);
         contentValues.put("password",password);

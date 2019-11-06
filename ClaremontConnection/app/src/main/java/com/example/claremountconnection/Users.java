@@ -23,10 +23,10 @@ public class Users {
 
     public Users() {}
 
-    public Users (String title, String firstName, String middleName, String lastName,
-                  String email, String password, String phone, String jobTitle, String employer,
-                  String organization, String state, String zip, String major,  String minor,
-                  String areaOfStudy, String researchInterests, String skills) {
+    public Users (String title, String firstName, String lastName, String middleName
+            , String email, String password, String phone, String jobTitle, String employer
+            , String organization, String state, String zip, String major, String minor
+            , String areaOfStudy, String researchInterests, String skills) {
         this.title = title;
         this.firstName = firstName;
         this.lastName = lastName;
