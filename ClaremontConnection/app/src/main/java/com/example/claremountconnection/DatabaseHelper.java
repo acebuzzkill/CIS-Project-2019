@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "ClaremontConnection.db";
     private static final int DATABASE_VERSION = 1;
@@ -101,6 +104,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(keySkills, keySkills);
         cv.put(keySkills,skills);
         db.insert(tableName, null, cv);
+        db.close();
     }
 
     private void fillUsersTable() {
@@ -144,7 +148,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
   //  }
 
     //Get user
-    public
+    public ArrayList<HashMap<String, String>> GetUsers(){
+        SQLiteDatabase db =this.getWritableDatabase();
+        ArrayList<HashMap<String, String>> userList = new ArrayList<>();
+        String query = "SELECT firstname, lastname FROM" + tableName;
+        Cursor cursor = db.rawQuery(query,null);
+        while (cursor.moveToNext()){
+            HashMap<String,String> user = new HashMap<>();
+            user.put("firstname", cursor.getString(cursor.getColumnIndex(keyFirstName)));
+            user.put("lastname", cursor.getString(cursor.getColumnIndex(keyLastName)));
+            userList.add(user);
+        }
+        return userList;
+    }
 
     //check for email and password
     public Boolean emailPassword(String email, String password){

@@ -19,10 +19,10 @@ public class TestDisplayDBUser extends BaseActivityToolbar {
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
 
-        nameList = dbHelper.getAllUsers();
-        user = nameList.get(0);
-        textViewName.setText("success: \n" +
-                user.getFirstName());
+      //  nameList = dbHelper.GetUsers();
+      //  user = nameList.get(0);
+      //  textViewName.setText("success: \n" +
+      //          user.getFirstName());
     }
 
     @Override
