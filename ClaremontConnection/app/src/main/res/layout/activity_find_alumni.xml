@@ -14,17 +14,23 @@
         layout="@layout/toolbar"
         />
 
-        <EditText
+        <SearchView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/search_edittext"
-            android:layout_margin="10dp"
-            android:padding="20dp"
+            android:id="@+id/search_view_alumni"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/toolbar"
-            android:hint="Search Alumni"
-            android:textSize="25sp">
-        </EditText>
+            android:queryHint="Search Alumni"
+            android:iconifiedByDefault="false">
+        </SearchView>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/search_list_results"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/search_view_alumni">
+        </ListView>
 
     </RelativeLayout>
 
