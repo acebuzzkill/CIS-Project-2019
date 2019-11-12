@@ -52,18 +52,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         fillUsersTable();
 //        Intent intent = new Intent(DatabaseHelper.this, TestDisplayDBUser.class);
 //        startActivity();
+
      }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + UsersTable.TABLE_NAME);
         onCreate(db);
+        db.close();
     }
 
 
     private void fillUsersTable() {
         Users user1 = new Users ("Mr/Mrs", "firstName", "middleName", "lastName",
-                "myEmail@email.com", "Pw1!", "myPhone", "myJob",
+                "Email@email.com", "Pw1!", "myPhone", "myJob",
                 "myEmployer", "myOrg", "myState", "myZip",
                 "myMajor", "myMinor", "myStudies",
                 "myResearchInterests", "mySkillset");
