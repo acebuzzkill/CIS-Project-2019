@@ -2,35 +2,23 @@ package com.example.claremountconnection.ProfileLoginCreate;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.example.claremountconnection.DatabaseHelper2;
+import com.example.claremountconnection.DatabaseHelper;
 import com.example.claremountconnection.ProfileEdit;
 import com.example.claremountconnection.R;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.regex.Pattern;
 
 public class ProfileCreate extends AppCompatActivity {
-    DatabaseHelper2 db;
-
-    private TextInputLayout textInputLoginEmail;
-    private TextInputLayout textInputLoginPassword;
-    private TextInputLayout textInputLoginConfirmPassword;
-
-    private TextInputEditText textLoginEmail;
-    private TextInputEditText textLoginPassword;
-    private TextInputEditText textLoginConfirmPassword;
-
-    private Button buttonNewProfile;
-
+    DatabaseHelper db;
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
                     "(?=.*[0-9])" +         //at least 1 digit
@@ -42,67 +30,19 @@ public class ProfileCreate extends AppCompatActivity {
                     ".{4,}" +               //at least 4 characters
                     "$");
 
+    private TextInputLayout textInputLoginEmail;
+    private TextInputLayout textInputLoginPassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_create);
+        db = new DatabaseHelper(this);
 
-        db = new DatabaseHelper2(this);
-
-        textLoginEmail = (TextInputEditText)findViewById(R.id.text_login_email);
-        textLoginPassword = (TextInputEditText)findViewById(R.id.text_login_password);
-        textLoginConfirmPassword = (TextInputEditText)findViewById(R.id.text_login_confirm_password);
-
-        buttonNewProfile = (Button) findViewById(R.id.profile_create_button);
-        buttonNewProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openEditProfile();
-            }
-        });
-            /**
-            @Override
-            public void onClick(View v) {
-                String s1 = textLoginEmail.getText().toString();
-                String s2 = textLoginPassword.getText().toString();
-                String s3 = textLoginConfirmPassword.getText().toString();
-                if (s1.equals("") || s2.equals("") || s3.equals("")) {
-                    Toast.makeText(getApplicationContext(), "Fields are empty", Toast.LENGTH_SHORT).show();
-                }
-                if (!s2.equals(s3)) {
-                    textLoginConfirmPassword.setError("Email does not match");
-                }
-                if (!Patterns.EMAIL_ADDRESS.matcher(s1).matches()){
-                    textLoginEmail.setError("Not a valid email address");
-                }
-                if (!PASSWORD_PATTERN.matcher(s2).matches()) {
-                    textLoginPassword.setError("Password too weak");
-                }else {
-                    if (s2.equals(s3)) {
-                        Boolean checkemail = db.checkemail(s1);
-                        if (checkemail == true) {
-                            Boolean insert = db.insert(s1, s2);
-                            if (insert == true) {
-                                Toast.makeText(getApplicationContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                        else {
-                            Toast.makeText(getApplicationContext(), "Email already exists", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                }
-            }
-        });
-        */
+        textInputLoginEmail = findViewById(R.id.text_input_login_email);
+        textInputLoginPassword = findViewById(R.id.text_input_login_password);
     }
 
-    public void openEditProfile() {
-        Intent intent = new Intent(this, ProfileEdit.class);
-        startActivity(intent);
-    }
-}
-    /**
     private boolean validateEmail() {
         String emailInput = textInputLoginEmail.getEditText().getText().toString().trim();
 
@@ -111,6 +51,9 @@ public class ProfileCreate extends AppCompatActivity {
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
             textInputLoginEmail.setError("Not a valid email address");
+            return false;
+        } else if (!db.checkemail(emailInput)) {
+            textInputLoginEmail.setError("This email already exists");
             return false;
         } else {
             textInputLoginEmail.setError(null);
@@ -132,7 +75,39 @@ public class ProfileCreate extends AppCompatActivity {
             return true;
         }
     }
-    */
 
+
+    // Enter insert account email and pw here
+    // Start edit profile activity
+    public void confirmInput(View v) {
+        if (validateEmail() && validatePassword()) {
+            addInput();
+            String emailInput = textInputLoginEmail.getEditText().getText().toString().trim();
+            startProfileEdit(emailInput);
+        }
+    }
+
+    public void addInput() {
+        String emailInput = textInputLoginEmail.getEditText().getText().toString().trim();
+        String passwordInput = textInputLoginPassword.getEditText().getText().toString().trim();
+        db.insert(emailInput, passwordInput);
+    }
+
+    public void startProfileEdit(String email) {
+        Intent intent = new Intent(this, ProfileEdit.class);
+        intent.putExtra("EMAIL_SESSION_ID", email);
+        this.startActivity(intent);
+        closeKeyboard();
+    }
+
+    private void closeKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+}
 
 
