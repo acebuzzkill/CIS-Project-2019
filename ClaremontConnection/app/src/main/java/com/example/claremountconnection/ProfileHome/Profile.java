@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import com.example.claremountconnection.BaseActivityToolbar;
 import com.example.claremountconnection.DatabaseHelper;
+import com.example.claremountconnection.ProfileLogin;
 import com.example.claremountconnection.ProfileEdit;
 import com.example.claremountconnection.R;
 import com.example.claremountconnection.Users;
@@ -52,21 +53,6 @@ public class Profile extends BaseActivityToolbar {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        button = (Button) findViewById(R.id.button_edit);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openProfileEdit();
-            }
-        });
-
-        button = (Button) findViewById(R.id.button_edit);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getLayoutResource();
-            }
-        });
 
         textTitle = findViewById(R.id.title);
         textFirstName = findViewById(R.id.first);
@@ -87,8 +73,11 @@ public class Profile extends BaseActivityToolbar {
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
 
+        String currentEmail = getIntent().getStringExtra("EMAIL_SESSION_ID");
+        int id = dbHelper.getIDbyEmail(currentEmail) - 1;
+
         nameList = dbHelper.getAllUsers();
-        user = nameList.get(0);
+        user = nameList.get(id);
         textTitle.setText(user.getTitle());
         textFirstName.setText(user.getFirstName());
         textMiddleName.setText(user.getMiddleName());
@@ -106,9 +95,18 @@ public class Profile extends BaseActivityToolbar {
         textResearchInterests.setText(user.getResearchInterests());
         textSkills.setText(user.getSkills());
 
+        button = (Button) findViewById(R.id.button_edit);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openProfileEdit(user.getEmail());
+            }
+        });
+
     }
-    public void openProfileEdit() {
+    public void openProfileEdit(String email) {
         Intent intent = new Intent(this, ProfileEdit.class);
+        intent.putExtra("EMAIL_SESSION_ID", email);
         startActivity(intent);
     }
 

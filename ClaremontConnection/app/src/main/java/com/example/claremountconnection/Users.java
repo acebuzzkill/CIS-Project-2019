@@ -2,6 +2,7 @@ package com.example.claremountconnection;
 
 public class Users {
 
+    private int id;
     private String title;
     private String firstName;
     private String lastName;
@@ -27,6 +28,7 @@ public class Users {
                  String email, String password, String phone, String jobTitle, String employer,
                  String organization, String state, String zip, String major,  String minor,
                  String areaOfStudy, String researchInterests, String skills) {
+ //       this.id = id;
         this.title = title;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -45,6 +47,10 @@ public class Users {
         this.researchInterests = researchInterests;
         this.skills = skills;
     }
+
+//    public int getID() {return id; }
+
+//    public void setID() {this.id = id; }
 
     public String getTitle() {
         return title;

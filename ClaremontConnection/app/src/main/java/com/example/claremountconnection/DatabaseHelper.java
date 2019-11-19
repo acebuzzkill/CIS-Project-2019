@@ -3,6 +3,7 @@ package com.example.claremountconnection;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -29,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         final String SQL_CREATE_USERS_TABLE = "CREATE TABLE " +
                 UsersTable.TABLE_NAME + " ( " +
-                UsersTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                UsersTable.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 UsersTable.COLUMN_TITLE + " TEXT, " +
                 UsersTable.COLUMN_FIRSTNAME + " TEXT, " +
                 UsersTable.COLUMN_MIDDLENAME + " TEXT, " +
@@ -65,7 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private void fillUsersTable() {
         Users user1 = new Users ("Mr/Mrs", "firstName", "middleName", "lastName",
-                "Email@email.com", "Pw1!", "myPhone", "myJob",
+                "myEmail@email.com", "Pw1!", "myPhone", "myJob",
                 "myEmployer", "myOrg", "myState", "myZip",
                 "myMajor", "myMinor", "myStudies",
                 "myResearchInterests", "mySkillset");
@@ -91,7 +92,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(UsersTable.COLUMN_AREAOFSTUDY, user.getAreaOfStudy());
         cv.put(UsersTable.COLUMN_RESEARCHINTERESTS, user.getResearchInterests());
         cv.put(UsersTable.COLUMN_SKILLS, user.getSkills());
+        // add id
         db.insert(UsersTable.TABLE_NAME, null, cv);
+    }
+
+    public void updateUser(Users user) {
+        ContentValues cv = new ContentValues();
+        cv.put(UsersTable.COLUMN_TITLE, user.getTitle());
+        // test
+        // cv.put(UsersTable.COLUMN_TITLE, "test");
+        // test ^^
+        cv.put(UsersTable.COLUMN_FIRSTNAME, user.getFirstName());
+        cv.put(UsersTable.COLUMN_LASTNAME, user.getLastName());
+        cv.put(UsersTable.COLUMN_MIDDLENAME, user.getMiddleName());
+        cv.put(UsersTable.COLUMN_EMAIL, user.getEmail());
+        cv.put(UsersTable.COLUMN_PASSWORD, user.getPassword());
+        cv.put(UsersTable.COLUMN_PHONE, user.getPhone());
+        cv.put(UsersTable.COLUMN_JOBTITLE, user.getJobTitle());
+        cv.put(UsersTable.COLUMN_EMPLOYER, user.getEmployer());
+        cv.put(UsersTable.COLUMN_ORGANIZATIONS, user.getOrganization());
+        cv.put(UsersTable.COLUMN_STATE, user.getState());
+        cv.put(UsersTable.COLUMN_ZIP, user.getZip());
+        cv.put(UsersTable.COLUMN_MAJOR, user.getMajor());
+        cv.put(UsersTable.COLUMN_MINOR, user.getMinor());
+        cv.put(UsersTable.COLUMN_AREAOFSTUDY, user.getAreaOfStudy());
+        cv.put(UsersTable.COLUMN_RESEARCHINTERESTS, user.getResearchInterests());
+        cv.put(UsersTable.COLUMN_SKILLS, user.getSkills());
+        String email = user.getEmail();
+        int id = getIDbyEmail(email);
+   //     String[] strArray = new String[] {email};
+   //     strArray[0] = email;
+        SQLiteDatabase db = this.getWritableDatabase();
+        System.out.println(db.update(UsersTable.TABLE_NAME, cv, UsersTable.COLUMN_ID + "=" + id, null));
+    //    db.update(UsersTable.TABLE_NAME, cv, UsersTable.COLUMN_ID + "=" + id, null);
+        db.close();
     }
 
     public List<Users> getAllUsers() {
@@ -143,9 +177,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean insert(String email,String password){
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("Email",email);
-        contentValues.put("password",password);
-        long ins = db.insert("user",null,contentValues);
+        contentValues.put(UsersTable.COLUMN_EMAIL,email);
+        contentValues.put(UsersTable.COLUMN_PASSWORD,password);
+        long ins = db.insert(UsersTable.TABLE_NAME,null,contentValues);
         if(ins==-1) return false;
         else return true;
     }
@@ -153,8 +187,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //check for email
     public Boolean checkemail(String email){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("Select * from user where email=?", new String[]{email});
-        if(cursor.getCount()>0) return false;
-        else return true;
+        Cursor cursor = db.rawQuery("Select * from " + UsersTable.TABLE_NAME + " where " + UsersTable.COLUMN_EMAIL + " =?", new String[]{email});
+        if(cursor.getCount()>0) { return false; }
+        else {
+            cursor.close();
+            return true;
+        }
+    }
+
+    // Get id of this email
+    public int getIDbyEmail (String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + UsersTable.TABLE_NAME + " WHERE " + UsersTable.COLUMN_EMAIL + " =?", new String[]{email});
+        if(cursor.moveToFirst()) {
+            String id = cursor.getString(0);
+            cursor.close();
+            return Integer.parseInt(id);
+        }
+        else {
+            return 0;
+        }
+    }
+
+    public int getProfilesCount() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int count = (int) DatabaseUtils.queryNumEntries(db, UsersTable.TABLE_NAME);
+        db.close();
+        return count;
     }
 }

@@ -19,6 +19,8 @@ import com.example.claremountconnection.R;
 
 public class ProfileLogin extends AppCompatActivity {
 
+    private String email;
+
     private EditText textUserEmail;
     private EditText textUserPassword;
     private Button buttonEnter;
@@ -43,7 +45,7 @@ public class ProfileLogin extends AppCompatActivity {
                 Boolean checkemailPassword = db.emailPassword(email,password);
                 if(checkemailPassword==true) {
                     Toast.makeText(getApplicationContext(), "You have logged in", Toast.LENGTH_SHORT).show();
-                    openUserProfile();
+                    openUserProfile(email);
                 }
                 else
                     Toast.makeText(getApplicationContext(), "Wrong email or password", Toast.LENGTH_SHORT).show();
@@ -62,8 +64,10 @@ public class ProfileLogin extends AppCompatActivity {
         textUserPassword.addTextChangedListener(loginTextWatcher);
     }
 
-    public void openUserProfile() {
+    public void openUserProfile(String email) {
+        this.email = email;
         Intent intentOpen = new Intent(this, Profile.class);
+        intentOpen.putExtra("EMAIL_SESSION_ID", email);
         startActivity(intentOpen);
         closeKeyboard();
     }

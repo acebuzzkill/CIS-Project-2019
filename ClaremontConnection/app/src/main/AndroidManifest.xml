@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ProfileLogin" />
         <activity android:name=".ProfileCreate" />
+        <activity android:name=".ProfileEdit" />
         <activity android:name=".Options" />
         <activity android:name=".Messages" />
         <activity android:name=".Map" />
