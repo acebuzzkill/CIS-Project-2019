@@ -1,4 +1,4 @@
-package com.example.claremountconnection.Messages;
+package com.example.claremountconnection;
 
 public class MessageGetImageText {
     private int mImageResource;

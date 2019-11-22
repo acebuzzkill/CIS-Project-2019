@@ -1,4 +1,4 @@
-package com.example.claremountconnection.Messages;
+package com.example.claremountconnection;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,8 +7,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.claremountconnection.R;
 
 import java.util.ArrayList;
 
