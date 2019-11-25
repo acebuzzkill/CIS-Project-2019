@@ -21,7 +21,7 @@
         android:id="@+id/search_view_alumni"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/toolbar"
-        android:queryHint="Search Alumni"
+        android:queryHint="Search Recommendations"
         android:iconifiedByDefault="false">
     </SearchView>
 

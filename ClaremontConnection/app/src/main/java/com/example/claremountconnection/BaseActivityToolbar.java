@@ -70,7 +70,7 @@ public abstract class BaseActivityToolbar extends AppCompatActivity {
                     this.startActivity(intent6);
                     break;
                 case R.id.menu_item7:
-                    Intent intent7 = new Intent(this, Options.class);
+                    Intent intent7 = new Intent(this, Recommender.class);
                     this.startActivity(intent7);
                     break;
                 case R.id.menu_item8:
@@ -79,17 +79,17 @@ public abstract class BaseActivityToolbar extends AppCompatActivity {
                     break;
 
                 case R.id.menu_item9:
-                    Intent intent9 = new Intent(this, TestDisplayDBUser.class);
+                    Intent intent9 = new Intent(this, Options.class);
                     this.startActivity(intent9);
                     break;
 
                 case R.id.menu_item10:
-                    Intent intent10 = new Intent(this, TestDisplayDBUser.class);
+                    Intent intent10 = new Intent(this, MainActivity.class);
                     this.startActivity(intent10);
                     break;
 
                 case R.id.menu_item11:
-                    Intent intent11 = new Intent(this, MainActivity.class);
+                    Intent intent11 = new Intent(this, TestDisplayDBUser.class);
                     this.startActivity(intent11);
                     break;
 

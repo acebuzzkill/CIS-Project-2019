@@ -27,7 +27,7 @@
         app:showAsAction="never" />
 
     <item android:id="@+id/menu_item7"
-        android:title="@string/options"
+        android:title="Recommendations"
         app:showAsAction="never" />
 
     <item android:id="@+id/menu_item8"
@@ -36,15 +36,15 @@
         app:showAsAction="ifRoom" />
 
     <item android:id="@+id/menu_item9"
-        android:title="Test DB"
+        android:title="Options"
         app:showAsAction="never" />
 
     <item android:id="@+id/menu_item10"
-        android:title="Log Out"
+        android:title="Logout"
         app:showAsAction="never" />
 
     <item android:id="@+id/menu_item11"
-        android:title="Log Out"
+        android:title="Test DB"
         app:showAsAction="never" />
 
 </menu>
