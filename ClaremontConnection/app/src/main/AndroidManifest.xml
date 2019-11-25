@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".ProfileEdit"></activity>
+        <activity android:name=".Recommender"></activity>
+        <activity android:name=".ProfileEdit" />
         <activity android:name=".ProfileLoginCreate.ProfileLogin" />
         <activity android:name=".ProfileLoginCreate.ProfileCreate" />
         <activity android:name=".Options.Options" />
@@ -21,8 +21,7 @@
         <activity android:name=".ProfileHome.Profile" />
         <activity android:name=".NewsFeed.NewsFeed" />
         <activity android:name=".TestDisplayDBUser" />
-	<activity android:name=".MainActivity.MainActivity">
-
+        <activity android:name=".MainActivity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

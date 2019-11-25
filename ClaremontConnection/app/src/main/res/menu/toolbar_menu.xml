@@ -39,4 +39,12 @@
         android:title="Test DB"
         app:showAsAction="never" />
 
+    <item android:id="@+id/menu_item10"
+        android:title="Log Out"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/menu_item11"
+        android:title="Log Out"
+        app:showAsAction="never" />
+
 </menu>

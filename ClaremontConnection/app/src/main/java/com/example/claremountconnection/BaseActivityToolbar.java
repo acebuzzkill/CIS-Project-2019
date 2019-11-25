@@ -83,7 +83,17 @@ public abstract class BaseActivityToolbar extends AppCompatActivity {
                     this.startActivity(intent9);
                     break;
 
-                default:
+                case R.id.menu_item10:
+                    Intent intent10 = new Intent(this, TestDisplayDBUser.class);
+                    this.startActivity(intent10);
+                    break;
+
+                case R.id.menu_item11:
+                    Intent intent11 = new Intent(this, MainActivity.class);
+                    this.startActivity(intent11);
+                    break;
+
+                    default:
                     return super.onOptionsItemSelected(item);
             }
             return true;

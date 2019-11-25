@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Claremont Connection</string>
-<!-- General Place Holder Text -->
+    <!-- General Place Holder Text -->
     <string name="main">Home Page</string>
     <string name="news_feed_main">News Feed</string>
     <string name="profile_main">Profile</string>
@@ -8,7 +8,7 @@
     <string name="opportunities_main">Opportunities</string>
     <string name="map_main">Map</string>
     <string name="options_main">Options</string>
-<!-- Toolbar Text -->
+    <!-- Toolbar Text -->
     <string name="news_feed">News Feed</string>
     <string name="profile">Profile</string>
     <string name="find_alumni">Find Alumni</string>
@@ -16,9 +16,9 @@
     <string name="map">Map</string>
     <string name="messages">Messages</string>
     <string name="options">Options</string>
-<!-- Profile Text -->
+    <!-- Profile Text -->
 
-<!-- Messages Text -->
+    <!-- Messages Text -->
     <string name="messages_inbox">Messages Inbox</string>
 
 </resources>
