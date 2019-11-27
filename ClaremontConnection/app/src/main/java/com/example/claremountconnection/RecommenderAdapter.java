@@ -1,4 +1,4 @@
-package com.example.claremountconnection.Messages;
+package com.example.claremountconnection;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +12,9 @@ import com.example.claremountconnection.R;
 
 import java.util.ArrayList;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ExampleViewHolder> {
-    private ArrayList<MessageGetImageText> mExampleList;
-    private OnItemClickListener mListener;
+public class RecommenderAdapter extends RecyclerView.Adapter<com.example.claremountconnection.RecommenderAdapter.ExampleViewHolder> {
+    private ArrayList<RecommenderGetText> mExampleList;
+    private com.example.claremountconnection.RecommenderAdapter.OnItemClickListener mListener;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -22,7 +22,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ExampleV
         void onDeleteClick(int position);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
+    public void setOnItemClickListener(com.example.claremountconnection.RecommenderAdapter.OnItemClickListener listener) {
         mListener = listener;
     }
 
@@ -32,7 +32,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ExampleV
         public TextView mTextView2;
         public ImageView mDeleteImage;
 
-        public ExampleViewHolder(View itemView, final OnItemClickListener listener) {
+        public ExampleViewHolder(View itemView, final com.example.claremountconnection.RecommenderAdapter.OnItemClickListener listener) {
             super(itemView);
             //mImageView = itemView.findViewById(R.id.imageView);
             mTextView1 = itemView.findViewById(R.id.textView);
@@ -65,20 +65,20 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ExampleV
         }
     }
 
-    public MessageAdapter(ArrayList<MessageGetImageText> exampleList) {
+    public RecommenderAdapter(ArrayList<RecommenderGetText> exampleList) {
         mExampleList = exampleList;
     }
 
     @Override
-    public ExampleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public com.example.claremountconnection.RecommenderAdapter.ExampleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_hard_code_message_text, parent, false);
-        ExampleViewHolder evh = new ExampleViewHolder(v, mListener);
+        com.example.claremountconnection.RecommenderAdapter.ExampleViewHolder evh = new com.example.claremountconnection.RecommenderAdapter.ExampleViewHolder(v, mListener);
         return evh;
     }
 
     @Override
-    public void onBindViewHolder(ExampleViewHolder holder, int position) {
-        MessageGetImageText currentItem = mExampleList.get(position);
+    public void onBindViewHolder(com.example.claremountconnection.RecommenderAdapter.ExampleViewHolder holder, int position) {
+        RecommenderGetText currentItem = mExampleList.get(position);
 
         //holder.mImageView.setImageResource(currentItem.getImageResource());
         holder.mTextView1.setText(currentItem.getText1());

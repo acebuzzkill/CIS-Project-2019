@@ -30,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         final String SQL_CREATE_USERS_TABLE = "CREATE TABLE " +
                 UsersTable.TABLE_NAME + " ( " +
-                UsersTable.COLUMN_ID + " INTEGER PRIMARY KEY, " +
+                UsersTable.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 UsersTable.COLUMN_TITLE + " TEXT, " +
                 UsersTable.COLUMN_FIRSTNAME + " TEXT, " +
                 UsersTable.COLUMN_MIDDLENAME + " TEXT, " +
@@ -69,7 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "myEmail@email.com", "Pw1!", "myPhone", "myJob",
                 "myEmployer", "myOrg", "myState", "myZip",
                 "myMajor", "myMinor", "myStudies",
-                "myResearchInterests", "mySkillset", 1);
+                "myResearchInterests", "mySkillset");
         addUser(user1);
     }
 
@@ -93,13 +93,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(UsersTable.COLUMN_RESEARCHINTERESTS, user.getResearchInterests());
         cv.put(UsersTable.COLUMN_SKILLS, user.getSkills());
         // add id
-        cv.put(UsersTable.COLUMN_ID, user.getID());
         db.insert(UsersTable.TABLE_NAME, null, cv);
     }
 
     public void updateUser(Users user) {
         ContentValues cv = new ContentValues();
         cv.put(UsersTable.COLUMN_TITLE, user.getTitle());
+        // test
+        // cv.put(UsersTable.COLUMN_TITLE, "test");
+        // test ^^
         cv.put(UsersTable.COLUMN_FIRSTNAME, user.getFirstName());
         cv.put(UsersTable.COLUMN_LASTNAME, user.getLastName());
         cv.put(UsersTable.COLUMN_MIDDLENAME, user.getMiddleName());

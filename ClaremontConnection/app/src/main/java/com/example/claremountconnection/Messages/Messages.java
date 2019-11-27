@@ -54,9 +54,11 @@ public class Messages extends BaseActivityToolbar {
 
     public void createExampleList() {
         mExampleList = new ArrayList<>();
+
         mExampleList.add(new MessageGetImageText(R.drawable.ic_android, "Line 1", "Line 2"));
         mExampleList.add(new MessageGetImageText(R.drawable.ic_audio, "Line 3", "Line 4"));
         mExampleList.add(new MessageGetImageText(R.drawable.ic_sun, "Line 5", "Line 6"));
+
     }
 
     public void buildRecyclerView() {

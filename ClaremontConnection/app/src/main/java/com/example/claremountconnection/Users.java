@@ -27,8 +27,8 @@ public class Users {
     public Users (String title, String firstName, String middleName, String lastName,
                   String email, String password, String phone, String jobTitle, String employer,
                   String organization, String state, String zip, String major,  String minor,
-                  String areaOfStudy, String researchInterests, String skills, int id) {
-        this.id = id;
+                  String areaOfStudy, String researchInterests, String skills) {
+        //       this.id = id;
         this.title = title;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -48,9 +48,9 @@ public class Users {
         this.skills = skills;
     }
 
-    public int getID() {return id; }
+//    public int getID() {return id; }
 
-    public void setID() {this.id = id; }
+//    public void setID() {this.id = id; }
 
     public String getTitle() {
         return title;

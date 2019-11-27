@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.claremountconnection.DatabaseHelper;
@@ -20,22 +21,22 @@ public class ProfileEdit extends AppCompatActivity {
 
     private Button button;
 
-    private TextView textTitle;
-    private TextView textFirstName;
-    private TextView textMiddleName;
-    private TextView textLastName;
-    private TextView textEmail;
-    private TextView textPhone;
-    private TextView textJobTitle;
-    private TextView textEmployer;
-    private TextView textOrganizations;
-    private TextView textState;
-    private TextView textZip;
-    private TextView textMajor;
-    private TextView textMinor;
-    private TextView textAreaOfStudy;
-    private TextView textResearchInterests;
-    private TextView textSkills;
+    private EditText textTitle;
+    private EditText textFirstName;
+    private EditText textMiddleName;
+    private EditText textLastName;
+    private EditText textEmail;
+    private EditText textPhone;
+    private EditText textJobTitle;
+    private EditText textEmployer;
+    private EditText textOrganizations;
+    private EditText textState;
+    private EditText textZip;
+    private EditText textMajor;
+    private EditText textMinor;
+    private EditText textAreaOfStudy;
+    private EditText textResearchInterests;
+    private EditText textSkills;
 
     private List<Users> nameList;
     private Users user;
@@ -67,13 +68,14 @@ public class ProfileEdit extends AppCompatActivity {
         final DatabaseHelper dbHelper = new DatabaseHelper(this);
 
         final String currentEmail = getIntent().getStringExtra("EMAIL_SESSION_ID");
-        int id = dbHelper.getIDbyEmail(currentEmail);
+        final int id = dbHelper.getIDbyEmail(currentEmail);
         int arrayID = id - 1;
-        // variable values from db to set on text box
+        //  Set each editbox value to values from the database
         nameList = dbHelper.getAllUsers();
         user = nameList.get(arrayID);
         if(user.getTitle() != null){
             textTitle.setText(user.getTitle());
+            //        user.setTitle(textTitle.getText().toString().trim());
         }
         if(user.getFirstName() != null){
             textFirstName.setText(user.getFirstName());
@@ -121,32 +123,33 @@ public class ProfileEdit extends AppCompatActivity {
             textSkills.setText(user.getSkills());
         }
 
-        String title = textTitle.getText().toString().trim();
-        String firstName = textFirstName.getText().toString().trim();
-        String lastName = textLastName.getText().toString().trim();
-        String middleName = textMiddleName.getText().toString().trim();
-        String email = textEmail.getText().toString().trim();
-        String password = user.getPassword();
-        String phone = textPhone.getText().toString().trim();
-        String jobTitle = textJobTitle.getText().toString().trim();
-        String employer = textEmployer.getText().toString().trim();
-        String organization = textOrganizations.getText().toString().trim();
-        String state = textState.getText().toString().trim();
-        String zip = textZip.getText().toString().trim();
-        String major = textMajor.getText().toString().trim();
-        String minor = textMinor.getText().toString().trim();
-        String areaOfStudy = textAreaOfStudy.getText().toString().trim();
-        String researchInterests = textResearchInterests.getText().toString().trim();
-        String skills = textSkills.getText().toString().trim();
-
-        account = new Users (title, firstName, middleName, lastName, email, password,
-                phone, jobTitle, employer, organization, state, zip, major, minor, areaOfStudy,
-                researchInterests, skills, id);
-
         button = (Button) findViewById(R.id.button_save);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String title = textTitle.getText().toString().trim();
+                String firstName = textFirstName.getText().toString().trim();
+                String lastName = textLastName.getText().toString().trim();
+                String middleName = textMiddleName.getText().toString().trim();
+                String email = textEmail.getText().toString().trim();
+                String password = user.getPassword();
+                String phone = textPhone.getText().toString().trim();
+                String jobTitle = textJobTitle.getText().toString().trim();
+                String employer = textEmployer.getText().toString().trim();
+                String organization = textOrganizations.getText().toString().trim();
+                String state = textState.getText().toString().trim();
+                String zip = textZip.getText().toString().trim();
+                String major = textMajor.getText().toString().trim();
+                String minor = textMinor.getText().toString().trim();
+                String areaOfStudy = textAreaOfStudy.getText().toString().trim();
+                String researchInterests = textResearchInterests.getText().toString().trim();
+                String skills = textSkills.getText().toString().trim();
+
+                account = new Users (title, firstName, middleName, lastName, email, password,
+                        phone, jobTitle, employer, organization, state, zip, major, minor, areaOfStudy,
+                        researchInterests, skills);
+
                 dbHelper.updateUser(account);
                 openUserProfile(currentEmail);
             }

@@ -18,6 +18,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.regex.Pattern;
 
 public class ProfileCreate extends AppCompatActivity {
+
     DatabaseHelper db;
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
@@ -109,5 +110,3 @@ public class ProfileCreate extends AppCompatActivity {
     }
 
 }
-
-
