@@ -4,34 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Opportunities.Opportunities">
+    tools:context=".Opportunities.Opportunities"
+    android:orientation="vertical">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        tools:context=".Messages.Messages">
 
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar"
             />
 
-        <SearchView
-            android:layout_width="match_parent"
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/search_view_alumni"
-            android:layout_centerHorizontal="true"
+            android:id="@+id/post_button"
             android:layout_below="@id/toolbar"
-            android:queryHint="Search Opportunities"
-            android:iconifiedByDefault="false">
-        </SearchView>
+            android:text="Post">
+        </Button>
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/opportunitiesView"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/search_list_results"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/search_view_alumni">
-        </ListView>
+            android:layout_height="match_parent"
+            android:layout_below="@+id/post_button"
+            android:layout_marginBottom="100dp"
+            android:padding="4dp"
+            android:scrollbars="vertical" />
+
 
     </RelativeLayout>
 
