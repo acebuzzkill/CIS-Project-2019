@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.example.claremountconnection.ProfileContract.UsersTable;
+import com.example.claremountconnection.OpportunityContract.OpportunityTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +50,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 UsersTable.COLUMN_RESEARCHINTERESTS + " TEXT, " +
                 UsersTable.COLUMN_SKILLS + " TEXT" +
                 ")";
+
+        final String SQL_CREATE_OPPORTUNITY_TABLE = "CREATE TABLE " +
+                OpportunityTable.TABLE_NAME + " ( " +
+                OpportunityTable.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                OpportunityTable.COLUMN_POST + " TEXT, " +
+                OpportunityTable.COLUMN_SKILL + " TEXT, " +
+                OpportunityTable.COLUMN_CONTACT + " TEXT" +
+                ")";
+
         db.execSQL(SQL_CREATE_USERS_TABLE);
+        db.execSQL(SQL_CREATE_OPPORTUNITY_TABLE);
         fillUsersTable();
+        fillOpportunityTable();
 //        Intent intent = new Intent(DatabaseHelper.this, TestDisplayDBUser.class);
 //        startActivity();
 
@@ -59,6 +71,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + UsersTable.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + OpportunityTable.TABLE_NAME);
         onCreate(db);
         db.close();
     }
@@ -66,11 +79,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private void fillUsersTable() {
         Users user1 = new Users ("Mr/Mrs", "firstName", "middleName", "lastName",
-                "myEmail@email.com", "Pw1!", "myPhone", "myJob",
+                "myEmail@email.com", "Pw1@", "myPhone", "myJob",
                 "myEmployer", "myOrg", "myState", "myZip",
                 "myMajor", "myMinor", "myStudies",
                 "myResearchInterests", "mySkillset");
         addUser(user1);
+    }
+
+    private void fillOpportunityTable() {
+        Opportunity opportunity1 = new Opportunity ("Software Engineer", "coding", "myEmail@email.com");
+        Opportunity opportunity2 = new Opportunity ("Biology Research", "science", "myEmail@email.com");
+        addOpportunity(opportunity1);
+        addOpportunity(opportunity2);
     }
 
     private void addUser(Users user) {
@@ -92,8 +112,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(UsersTable.COLUMN_AREAOFSTUDY, user.getAreaOfStudy());
         cv.put(UsersTable.COLUMN_RESEARCHINTERESTS, user.getResearchInterests());
         cv.put(UsersTable.COLUMN_SKILLS, user.getSkills());
-        // add id
         db.insert(UsersTable.TABLE_NAME, null, cv);
+    }
+
+    public void addOpportunity(Opportunity opportunity) {
+        db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(OpportunityTable.COLUMN_POST, opportunity.getPost());
+        cv.put(OpportunityTable.COLUMN_SKILL, opportunity.getSkill());
+        cv.put(OpportunityTable.COLUMN_CONTACT, opportunity.getContact());
+        db.insert(OpportunityTable.TABLE_NAME, null, cv);
     }
 
     public void updateUser(Users user) {
@@ -120,11 +148,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(UsersTable.COLUMN_SKILLS, user.getSkills());
         String email = user.getEmail();
         int id = getIDbyEmail(email);
-   //     String[] strArray = new String[] {email};
-   //     strArray[0] = email;
         SQLiteDatabase db = this.getWritableDatabase();
         System.out.println(db.update(UsersTable.TABLE_NAME, cv, UsersTable.COLUMN_ID + "=" + id, null));
-    //    db.update(UsersTable.TABLE_NAME, cv, UsersTable.COLUMN_ID + "=" + id, null);
         db.close();
     }
 
@@ -159,6 +184,58 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         cursor.close();
         return usersList;
+    }
+
+    public List<Opportunity> getAllOpportunities() {
+        List<Opportunity> opportunitiesList = new ArrayList<>();
+        db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + OpportunityTable.TABLE_NAME, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Opportunity opportunity = new Opportunity();
+                // set values in here
+                opportunity.setId(cursor.getInt(cursor.getColumnIndex(OpportunityTable.COLUMN_ID)));
+                opportunity.setPost(cursor.getString(cursor.getColumnIndex(OpportunityTable.COLUMN_POST)));
+                opportunity.setSkill(cursor.getString(cursor.getColumnIndex(OpportunityTable.COLUMN_SKILL)));
+                opportunity.setContact(cursor.getString(cursor.getColumnIndex(OpportunityTable.COLUMN_CONTACT)));
+                opportunitiesList.add(opportunity);
+            } while(cursor.moveToNext());
+        }
+
+        cursor.close();
+        return opportunitiesList;
+    }
+
+    public Opportunity getOpportunity(String id) {
+        db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + OpportunityTable.TABLE_NAME + " WHERE " + OpportunityTable.COLUMN_ID + " = ?", new String[]{id});
+        if (cursor.moveToFirst()) {
+            Opportunity opportunity = new Opportunity();
+            opportunity.setId(cursor.getInt(cursor.getColumnIndex(OpportunityTable.COLUMN_ID)));
+            opportunity.setPost(cursor.getString(cursor.getColumnIndex(OpportunityTable.COLUMN_POST)));
+            opportunity.setSkill(cursor.getString(cursor.getColumnIndex(OpportunityTable.COLUMN_SKILL)));
+            opportunity.setContact(cursor.getString(cursor.getColumnIndex(OpportunityTable.COLUMN_CONTACT)));
+            cursor.close();
+            return opportunity;
+        }
+        else {
+            cursor.close();
+            return null;
+        }
+    }
+
+    public int getNumOfOpportunities() {
+        db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + OpportunityTable.TABLE_NAME, null);
+        if (cursor.moveToLast()) {
+            int lastRecordId = cursor.getInt(cursor.getColumnIndex(OpportunityTable.COLUMN_ID));
+            cursor.close();
+            return lastRecordId;
+        }
+        else {
+            cursor.close();
+            return 0;
+        }
     }
 
     //check for email and password

@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Opportunities.Opportunities"
-    android:orientation="vertical">
-
+    tools:context=".Recommender">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,20 +16,12 @@
             layout="@layout/toolbar"
             />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/post_button"
-            android:layout_below="@id/toolbar"
-            android:text="Post">
-        </Button>
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/opportunitiesView"
+            android:id="@+id/recommenderView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/post_button"
             android:layout_marginBottom="100dp"
+            android:layout_below="@id/toolbar"
             android:padding="4dp"
             android:scrollbars="vertical" />
 

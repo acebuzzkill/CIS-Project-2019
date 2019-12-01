@@ -39,4 +39,11 @@
         android:title="Test DB"
         app:showAsAction="never" />
 
+    <item android:id="@+id/menu_item10"
+        android:title="Recommendations"
+        app:showAsAction="never" />
+    <item android:id="@+id/menu_item11"
+        android:title="Logout"
+        app:showAsAction="never" />
+
 </menu>

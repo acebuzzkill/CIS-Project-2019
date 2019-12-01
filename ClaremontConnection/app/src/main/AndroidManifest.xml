@@ -13,13 +13,17 @@
         <activity android:name=".ProfileCreate" />
         <activity android:name=".ProfileEdit" />
         <activity android:name=".Options" />
+        <activity android:name=".Recommender" />
         <activity android:name=".Messages" />
         <activity android:name=".Map" />
-        <activity android:name=".Opportunities" />
+        <activity android:name=".Opportunities.OpportunitiesDetailsPage"></activity>
+        <activity android:name=".Opportunities.OpportunitiesPost" />
+        <activity android:name=".Opportunities.Opportunities" />
         <activity android:name=".FindAlumni" />
         <activity android:name=".ProfileHome.Profile" />
         <activity android:name=".NewsFeed" />
         <activity android:name=".TestDisplayDBUser" />
+        <activity android:name=".Logout" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
