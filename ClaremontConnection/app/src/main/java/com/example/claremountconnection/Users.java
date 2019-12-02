@@ -48,9 +48,9 @@ public class Users {
         this.skills = skills;
     }
 
-//    public int getID() {return id; }
+    public int getID() {return id; }
 
-//    public void setID() {this.id = id; }
+    public void setID() {this.id = id; }
 
     public String getTitle() {
         return title;

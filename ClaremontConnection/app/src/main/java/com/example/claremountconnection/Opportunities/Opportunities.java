@@ -14,6 +14,7 @@ import com.example.claremountconnection.DatabaseHelper;
 import com.example.claremountconnection.Opportunities.OpportunitiesDetailsPage;
 import com.example.claremountconnection.R;
 import com.example.claremountconnection.Opportunity;
+import com.example.claremountconnection.Users;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,10 +88,12 @@ public class Opportunities extends BaseActivityToolbar {
     public void createExampleList() {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
 
+        //change these to get only recommended ones - same skills
         List<Opportunity> opportunityList = dbHelper.getAllOpportunities();
-     //   Opportunity opportunity = new Opportunity();
+        List<Users> usersList = dbHelper.getAllUsers();
 
-
+        int oppportunityCount = 0;
+        int profileCount = 0;
 
         // db records start at 1 while arraylist start at 0
         int numRecords = dbHelper.getNumOfOpportunities();
@@ -105,6 +108,8 @@ public class Opportunities extends BaseActivityToolbar {
         //mExampleList.add(new OpportunitiesGetText(R.drawable.ic_audio, "Line 3", "Line 4"));
         //mExampleList.add(new OpportunitiesGetText(R.drawable.ic_sun, "Line 5", "Line 6"));
 
+
+
         for (Opportunity opportunity : opportunityList) {
             System.out.println(opportunity.getId());
             System.out.println(opportunity.getPost());
@@ -116,6 +121,7 @@ public class Opportunities extends BaseActivityToolbar {
             String contact = opportunity.getContact();
             mExampleList.add(new OpportunitiesGetText(R.drawable.ic_android, opportunity.getPost(), opportunity.getSkill()));
            // insertItem(id, opportunity);
+            oppportunityCount =+ 1;
         }
     }
 
