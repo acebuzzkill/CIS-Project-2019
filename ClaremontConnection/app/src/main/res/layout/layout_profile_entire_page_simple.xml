@@ -30,6 +30,12 @@
                 android:background="@color/WhiteSmoke"
                 android:orientation="vertical">
 
+                <Button
+                    android:id="@+id/button_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit" />
+
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="match_parent"
@@ -322,11 +328,7 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/button_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Edit" />
+
 
         </RelativeLayout>
 

@@ -1,13 +1,10 @@
-package com.example.claremountconnection.Map;
+package com.example.claremountconnection;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.claremountconnection.BaseActivityToolbar;
-import com.example.claremountconnection.R;
-
-public class Map extends BaseActivityToolbar {
+public class Options extends BaseActivityToolbar {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +13,6 @@ public class Map extends BaseActivityToolbar {
 
     @Override
     public int getLayoutResource() {
-        return R.layout.activity_map;
+        return R.layout.activity_options;
     }
 }

@@ -30,6 +30,12 @@
                 android:background="@color/WhiteSmoke"
                 android:orientation="vertical">
 
+                <Button
+                    android:id="@+id/button_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Save" />
+
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="match_parent"
@@ -320,14 +326,9 @@
                     android:hint="Skills"
                     android:textColor="@color/Black"
                     android:textSize="20sp" />
-
             </LinearLayout>
 
-            <Button
-                android:id="@+id/button_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Save" />
+
 
         </RelativeLayout>
 

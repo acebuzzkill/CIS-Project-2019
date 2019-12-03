@@ -1,4 +1,4 @@
-package com.example.claremountconnection.ProfileLoginCreate;
+package com.example.claremountconnection;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +19,8 @@ import com.example.claremountconnection.R;
 
 public class ProfileLogin extends AppCompatActivity {
 
+    private String email;
+
     private EditText textUserEmail;
     private EditText textUserPassword;
     private Button buttonEnter;
@@ -29,6 +31,17 @@ public class ProfileLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_login);
+
+        if (getIntent().getStringExtra("EMAIL_SESSION_ID") == null) {
+            // Hide Logout Button
+
+        }
+        else {
+            // Show Logout Button
+            final String currentEmail = getIntent().getStringExtra("EMAIL_SESSION_ID");
+            openUserProfile(currentEmail);
+        }
+
         db = new DatabaseHelper(this);
 
         textUserEmail = (EditText) findViewById(R.id.text_user_email);
@@ -43,13 +56,13 @@ public class ProfileLogin extends AppCompatActivity {
                 Boolean checkemailPassword = db.emailPassword(email,password);
                 if(checkemailPassword==true) {
                     Toast.makeText(getApplicationContext(), "You have logged in", Toast.LENGTH_SHORT).show();
-                    openUserProfile();
+                    openUserProfile(email);
                 }
                 else
                     Toast.makeText(getApplicationContext(), "Wrong email or password", Toast.LENGTH_SHORT).show();
             }
         });
-
+        
         buttonCreate = (Button)findViewById(R.id.button_user_create);
         buttonCreate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,8 +75,10 @@ public class ProfileLogin extends AppCompatActivity {
         textUserPassword.addTextChangedListener(loginTextWatcher);
     }
 
-    public void openUserProfile() {
+    public void openUserProfile(String email) {
+        this.email = email;
         Intent intentOpen = new Intent(this, Profile.class);
+        intentOpen.putExtra("EMAIL_SESSION_ID", email);
         startActivity(intentOpen);
         closeKeyboard();
     }

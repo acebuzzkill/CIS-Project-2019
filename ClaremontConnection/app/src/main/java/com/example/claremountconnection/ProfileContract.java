@@ -8,6 +8,7 @@ public final class ProfileContract {
 
     public static class UsersTable implements BaseColumns {
         public static final String TABLE_NAME = "users";
+        public static final String COLUMN_ID = "id";
         public static final String COLUMN_TITLE = "title";
         public static final String COLUMN_FIRSTNAME = "firstName";
         public static final String COLUMN_MIDDLENAME = "middleName";

@@ -23,7 +23,7 @@ public class TestDisplayDBUser extends BaseActivityToolbar {
         user = nameList.get(0);
         textViewName.setText("success: \n" +
                 user.getFirstName());
-    }
+        }
 
     @Override
     public int getLayoutResource() {

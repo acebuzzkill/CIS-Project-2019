@@ -1,18 +1,22 @@
-package com.example.claremountconnection.ProfileLoginCreate;
+package com.example.claremountconnection;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.example.claremountconnection.R;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.regex.Pattern;
 
 public class ProfileCreate extends AppCompatActivity {
+
+    DatabaseHelper db;
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
                     "(?=.*[0-9])" +         //at least 1 digit
@@ -31,6 +35,7 @@ public class ProfileCreate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_create);
+        db = new DatabaseHelper(this);
 
         textInputLoginEmail = findViewById(R.id.text_input_login_email);
         textInputLoginPassword = findViewById(R.id.text_input_login_password);
@@ -44,6 +49,9 @@ public class ProfileCreate extends AppCompatActivity {
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
             textInputLoginEmail.setError("Not a valid email address");
+            return false;
+        } else if (!db.checkemail(emailInput)) {
+            textInputLoginEmail.setError("This email already exists");
             return false;
         } else {
             textInputLoginEmail.setError(null);
@@ -66,16 +74,38 @@ public class ProfileCreate extends AppCompatActivity {
         }
     }
 
+
+    // Enter insert account email and pw here
+    // Start edit profile activity
     public void confirmInput(View v) {
-        if (!validateEmail() | !validatePassword()) {
-            return;
+        if (validateEmail() && validatePassword()) {
+            addInput();
+            String emailInput = textInputLoginEmail.getEditText().getText().toString().trim();
+            startProfileEdit(emailInput);
         }
+    }
 
-        String input = "Email: " + textInputLoginEmail.getEditText().getText().toString();
-        input += "\n";
-        input += "Username: " + textInputLoginPassword.getEditText().getText().toString();
+    public void addInput() {
+        String emailInput = textInputLoginEmail.getEditText().getText().toString().trim();
+        String passwordInput = textInputLoginPassword.getEditText().getText().toString().trim();
+        db.insert(emailInput, passwordInput);
+    }
 
-        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+    public void startProfileEdit(String email) {
+        Intent intent = new Intent(this, ProfileEdit.class);
+        intent.putExtra("EMAIL_SESSION_ID", email);
+        this.startActivity(intent);
+        closeKeyboard();
+    }
+
+    private void closeKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
 }
+
+

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".ProfileLoginCreate.ProfileLogin">
+    tools:context=".ProfileLogin">
 
     <EditText
         android:id="@+id/text_user_email"
