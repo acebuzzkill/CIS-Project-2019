@@ -76,11 +76,13 @@ public class Profile extends BaseActivityToolbar {
         int id = 0;
 
         if (getIntent().getStringExtra(("EMAIL_SESSION_ID")) == null) {
-            id = Integer.parseInt(getIntent().getStringExtra(("PROFILE_SESSION_ID"))) - 1;
+            id = Integer.parseInt(getIntent().getStringExtra(("PROFILE_SESSION_ID")));
         }
         else {
             String currentEmail = getIntent().getStringExtra("EMAIL_SESSION_ID");
             id = dbHelper.getIDbyEmail(currentEmail) - 1;
+            System.out.println("id by email: " + id);
+            getIntent().putExtra("EMAIL_SESSION_ID", currentEmail);
         }
 
 

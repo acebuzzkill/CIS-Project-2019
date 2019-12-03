@@ -64,6 +64,13 @@ public class OpportunitiesPost extends AppCompatActivity {
 
     public void addOpportunityToDB(String post, String skill, String contact) {
         Opportunity opportunity = new Opportunity(post, skill, contact);
+        DatabaseHelper dbhelper = new DatabaseHelper(this);
+        System.out.println("post: " + post);
+        System.out.println("skill: " + skill);
+        System.out.println("contact: " + contact);
+        System.out.println("post: " + opportunity.getPost());
+        System.out.println("skill: " + opportunity.getSkill());
+        System.out.println("contact: " + opportunity.getContact());
         dbhelper.addOpportunity(opportunity);
     }
 }

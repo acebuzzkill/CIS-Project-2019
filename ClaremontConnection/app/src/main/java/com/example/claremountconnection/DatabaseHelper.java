@@ -127,11 +127,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Opportunity opportunity3 = new Opportunity ("2 by 4 Research 2", "science", "kndhq@knd.com");
         Opportunity opportunity4 = new Opportunity ("2 by 4 Research 3", "science", "kndhq@knd.com");
         Opportunity opportunity5 = new Opportunity ("2 by 4 Research 4", "science", "kndhq@knd.com");
-        addOpportunity(opportunity1);
-        addOpportunity(opportunity2);
-        addOpportunity(opportunity3);
-        addOpportunity(opportunity4);
-        addOpportunity(opportunity5);
+        populateDbOpportunity(opportunity1);
+        populateDbOpportunity(opportunity2);
+        populateDbOpportunity(opportunity3);
+        populateDbOpportunity(opportunity4);
+        populateDbOpportunity(opportunity5);
     }
 
     private void addUser(Users user) {
@@ -156,7 +156,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert(UsersTable.TABLE_NAME, null, cv);
     }
 
+    public void populateDbOpportunity(Opportunity opportunity) {
+        ContentValues cv = new ContentValues();
+        cv.put(OpportunityTable.COLUMN_POST, opportunity.getPost());
+        cv.put(OpportunityTable.COLUMN_SKILL, opportunity.getSkill());
+        cv.put(OpportunityTable.COLUMN_CONTACT, opportunity.getContact());
+        db.insert(OpportunityTable.TABLE_NAME, null, cv);
+    }
+
     public void addOpportunity(Opportunity opportunity) {
+        db = getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(OpportunityTable.COLUMN_POST, opportunity.getPost());
         cv.put(OpportunityTable.COLUMN_SKILL, opportunity.getSkill());
@@ -271,6 +280,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Users user = new Users();
+                user.setID(cursor.getInt(cursor.getColumnIndex(UsersTable.COLUMN_TITLE)));
                 user.setTitle(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_TITLE)));
                 user.setFirstName(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_FIRSTNAME)));
                 user.setLastName(cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_LASTNAME)));
